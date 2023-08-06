@@ -1,3 +1,6 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
+
 /* Reset default styles and apply a basic layout */
 body {
   margin: 0;
@@ -8,16 +11,28 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
+  background-color: #cecece; /* P */
+  color: #ffcf0b; /* E */
+  padding: 1rem 2rem; /* Increase horizontal padding for more spacing */
+  font-family: 'Montserrat', sans-serif; /* Use Montserrat font for the entire Navbar */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
 }
 
 .logo a {
   text-decoration: none;
-  color: #fff;
+  color: #ffcf0b; /* E */
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.logo img {
+  width: 150px; /* Set the width of the image */
+  height: 75px; /* Set the height of the image */
+  margin-right: 20px; /* Add more spacing between the logo and text */
 }
 
 ul {
@@ -26,15 +41,16 @@ ul {
 }
 
 li {
-  margin-right: 1rem;
+  margin-right: 1.5rem; /* Increase the margin between navigation links */
 }
 
 a {
   text-decoration: none;
-  color: #fff;
+  font-size: 25px;
+  color: #bcac6b; /* O */
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #ff9800;
+  color: #debe3b; /* K */
 }
