@@ -1,5 +1,4 @@
 import React from "react";
-import backgroundImg from "./Images/logo.png"; // Import the background image
 
 const SearcBar = () => {
     return ( 
