@@ -1,34 +1,134 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
+
 /* LandingPage.css */
-body {
+
+/* Reset default margin and padding */
+body, h1, h2, h3, p, ul, li {
   margin: 0;
   padding: 0;
 }
 
+/* Set default font family and background color */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #fff;
+  color: #333;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Search bar styles */
 .search-bar {
-  border: solid black 1px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-size: cover;
-  background-position: center;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 100px 0;
+  text-align: center;
 }
 
+/* Search container styles */
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Input styles */
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px 0 0 20px;
+}
+
+/* Button styles */
+button {
+  background-color: #ffcf0b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ffc400;
+}
+
+/* Weather display styles */
 .weather-display {
-  position: absolute;
-  top: 84px; /* Position the weather display below the Navbar and the search bar */
-  left: 1rem;
-  background-color: transparent;
-  padding: 1rem;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
+/* Other sections styles */
+.new-section,
+.features-section,
+.testimonial-section,
+.contact-section,
+.footer-section {
+  background-color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+/* Heading styles */
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+  font-family: 'Creepster', cursive;
+}
+
+/* Text styles */
+p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Links styles */
+a {
+  color: #ffcf0b;
+}
+
+/* SlidingBox.css */
+
+.sliding-box-container {
+  display: flex;
+  overflow: hidden; /* Hide overflow to prevent wrapping */
+  background-color: #f0f0f0;
+  width: 100%; /* Ensure the sliding container takes full width */
+}
+
+.sliding-box-wrapper {
+  display: flex; /* Display the boxes side by side */
+  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+}
+
+.sliding-box {
+  flex: 0 0 200px; /* Set the width of each box */
+  height: 300px;
+  padding: 20px;
+  margin-left: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

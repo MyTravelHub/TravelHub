@@ -1,0 +1,6 @@
+P - 9b9b9b
+O - bcac6b
+K - debe3b
+E - ffcf0b
+
+BG - cecece

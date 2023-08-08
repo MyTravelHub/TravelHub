@@ -1,44 +1,66 @@
+// React Imports
 import React from "react";
+
+// Style Imports
+import "../CSS/LandingPage.css"; 
+
+// Component Imports
 import Navbar from "../Components/Navbar";
-import "../CSS/LandingPage.css"; // Import the LandingPage CSS
-import backgroundImg from "../Images/logo.png"; // Import the background image
+import SearcBar from "../Components/HomePage/SearchBar";
+import WeatherDisplay from "../Components/HomePage/WeatherDisplay";
+import SlidingBoxs from "../Components/HomePage/SlidingBoxes";
 
+// Page Component
 const LandingPage = () => {
-  // Sample weather data for demonstration purposes
-  const weatherData = {
-    temperature: 25,
-    description: "Sunny",
-    location: "Your Current Location",
-  };
-
+  const cards = [
+    {
+      title: "Get Airport Maps",
+      description: "Find maps for different airports.",
+    },
+    {
+      title: "View Delays",
+      description: "Check real-time flight delays and updates.",
+    },
+    {
+      title: "Get Airport Maps",
+      description: "Find maps for different airports.",
+    },
+    {
+      title: "View Delays",
+      description: "Check real-time flight delays and updates.",
+    },
+    {
+      title: "Get Airport Maps",
+      description: "Find maps for different airports.",
+    },
+    {
+      title: "View Delays",
+      description: "Check real-time flight delays and updates.",
+    },
+    {
+      title: "Get Airport Maps",
+      description: "Find maps for different airports.",
+    },
+    {
+      title: "View Delays",
+      description: "Check real-time flight delays and updates.",
+    },
+    {
+      title: "Get Airport Maps",
+      description: "Find maps for different airports.",
+    },
+    {
+      title: "View Delays",
+      description: "Check real-time flight delays and updates.",
+    },
+    // Add more cards as needed
+  ];
   return (
     <div>
       <Navbar />
-      <div
-        className="search-bar"
-        style={{ backgroundImage: `url(${backgroundImg})` }}
-      >
-        <div className="search-container">
-          <form action="/" method="get">
-            <label htmlFor="header-search">
-              <span className="visually-hidden">Search blog posts</span>
-            </label>
-            <input
-              type="text"
-              id="header-search"
-              placeholder="I need to find..."
-              name="s"
-            />
-            <button type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-      <div className="weather-display">
-        {/* Your weather display code goes here */}
-        <h3>{weatherData.location}</h3>
-        <p>Temperature: {weatherData.temperature}°C</p>
-        <p>{weatherData.description}</p>
-      </div>
+      <SearcBar />
+      <WeatherDisplay />
+      <SlidingBoxs cards={cards} slideInterval={5000} />
     </div>
   );
 };
