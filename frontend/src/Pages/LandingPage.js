@@ -25,42 +25,14 @@ const LandingPage = () => {
       title: "Get Airport Maps",
       description: "Find maps for different airports.",
     },
-    {
-      title: "View Delays",
-      description: "Check real-time flight delays and updates.",
-    },
-    {
-      title: "Get Airport Maps",
-      description: "Find maps for different airports.",
-    },
-    {
-      title: "View Delays",
-      description: "Check real-time flight delays and updates.",
-    },
-    {
-      title: "Get Airport Maps",
-      description: "Find maps for different airports.",
-    },
-    {
-      title: "View Delays",
-      description: "Check real-time flight delays and updates.",
-    },
-    {
-      title: "Get Airport Maps",
-      description: "Find maps for different airports.",
-    },
-    {
-      title: "View Delays",
-      description: "Check real-time flight delays and updates.",
-    },
-    // Add more cards as needed
   ];
+
   return (
     <div>
       <Navbar />
       <SearcBar />
       <WeatherDisplay />
-      <SlidingBoxs cards={cards} slideInterval={5000} />
+      <SlidingBoxs cards={cards} slideInterval={5000} /> {/* Include SlidingBoxs here */}
     </div>
   );
 };

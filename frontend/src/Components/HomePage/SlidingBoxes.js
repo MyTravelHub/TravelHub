@@ -3,31 +3,35 @@ import React, { useState, useEffect } from "react";
 const SlidingBoxs = ({ cards, slideInterval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Duplicate the cards to create an endless loop effect
-  const duplicatedCards = [...cards, ...cards];
-
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        (prevIndex + 1) % duplicatedCards.length
+        (prevIndex + 1) % cards.length
       );
     }, slideInterval);
 
     return () => {
       clearInterval(timer);
     };
-  }, [duplicatedCards.length, slideInterval]);
+  }, [cards.length, slideInterval]);
 
   return (
     <div className="sliding-box-container">
       <div
         className="sliding-box-wrapper"
-        style={{ transform: `translateX(-${currentIndex * 170}px)` }}
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transition: "transform 0.5s ease-in-out",
+          display: "flex",
+          alignItems: "flex-start",
+        }}
       >
-        {duplicatedCards.map((card, index) => (
+        {cards.map((card, index) => (
           <div key={index} className="sliding-box">
-            <h3>{card.title}</h3>
-            <p>{card.description}</p>
+            <div className="sliding-box-text">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </div>
           </div>
         ))}
       </div>

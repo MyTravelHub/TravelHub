@@ -107,28 +107,25 @@ a {
   color: #ffcf0b;
 }
 
-/* SlidingBox.css */
-
+/* Example CSS (LandingPage.css) */
 .sliding-box-container {
-  display: flex;
-  overflow: hidden; /* Hide overflow to prevent wrapping */
-  background-color: #f0f0f0;
-  width: 100%; /* Ensure the sliding container takes full width */
+  width: 100%;
+  overflow: hidden;
 }
 
 .sliding-box-wrapper {
-  display: flex; /* Display the boxes side by side */
-  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 .sliding-box {
-  flex: 0 0 200px; /* Set the width of each box */
-  height: 300px;
+  min-width: 100%;
+  flex-shrink: 0;
   padding: 20px;
-  margin-left: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.sliding-box-text {
+  padding: 20px;
 }
