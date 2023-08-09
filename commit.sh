@@ -17,7 +17,7 @@ cd ..
 cd backend
 
 # Run build for the Express app
-npm run build
+# npm run build
 
 # Go back to the root directory
 cd ..
