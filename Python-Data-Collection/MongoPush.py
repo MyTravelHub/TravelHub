@@ -15,12 +15,14 @@ baggage_info_collection = db["BaggageInfo"]
 
 # Test data
 test_data = [
-    {
-        "airline_name": "United",
-        "carry_on_size": "22 x 14 x 9",
-        "checked_bag_weight": "50lbs",
-        "checked_bag_size": "62 Inches"
-    },
+        {
+  "airline_name": "United",
+  "keywords": ["United", "airline", "carry on", "baggage", "policy"],
+  "carry_on_size": "22 x 14 x 9",
+  "checked_bag_weight": "50lbs",
+  "checked_bag_size": "62 Inches"
+},
+
     # You can add more test data items here
 ]
 
