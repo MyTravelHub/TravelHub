@@ -12,7 +12,7 @@ body, h1, h2, h3, p, ul, li {
 /* Set default font family and background color */
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #fff;
+  background-color: #f0f0f0;
 }
 
 /* Navbar styles */
@@ -109,8 +109,9 @@ a {
 
 /* Example CSS (LandingPage.css) */
 .sliding-box-container {
-  width: 100%;
+  width: 90%;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .sliding-box-wrapper {

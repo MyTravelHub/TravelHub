@@ -12,7 +12,7 @@ const WeatherDisplay = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          const apiKey = 'API KEY HERE';
+          const apiKey = '';
 
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
@@ -43,7 +43,7 @@ const WeatherDisplay = () => {
   return (
     <div className="weather-display">
       <h3>{weatherData.location}</h3>
-      <p>Temperature: {weatherData.temperature}°C</p>
+      <p>Temperature: {weatherData.temperature}°F</p>
       <p>{weatherData.description}</p>
     </div>
   );
