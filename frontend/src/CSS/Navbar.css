@@ -1,38 +1,45 @@
 /* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
-
-/* Reset default styles and apply a basic layout */
-body {
-  margin: 0;
-  padding: 0;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0;700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap");
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #cecece; /* P */
-  color: #ffcf0b; /* E */
-  padding: 1rem 2rem; /* Increase horizontal padding for more spacing */
-  font-family: 'Montserrat', sans-serif; /* Use Montserrat font for the entire Navbar */
+  background-color: rgba(206, 206, 206, 0.4); 
+  color: #333; 
+  padding: 0.5rem 2rem;
+  font-family: "Montserrat", sans-serif;
+  backdrop-filter: blur(10px); 
+  z-index: 1; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
 }
 
 .logo {
   display: flex;
   align-items: center;
+  margin-left: 200px;
+  margin-right: -200px;
 }
 
 .logo a {
   text-decoration: none;
-  color: #ffcf0b; /* E */
-  font-size: 1.5rem;
+  color: #333; 
+  font-size: 24px; 
   font-weight: bold;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  max-width: 200px;
 }
 
 .logo img {
-  width: 150px; /* Set the width of the image */
-  height: 75px; /* Set the height of the image */
-  margin-right: 20px; /* Add more spacing between the logo and text */
+  width: 80px;
+  height: 40px;
+  margin-right: 10px;
 }
 
 ul {
@@ -41,16 +48,18 @@ ul {
 }
 
 li {
-  margin-right: 1.5rem; /* Increase the margin between navigation links */
+  margin-right: 1rem;
 }
 
 a {
+  margin-right: 100px;
+  margin-left: -90px;
   text-decoration: none;
-  font-size: 25px;
-  color: #bcac6b; /* O */
+  font-size: 19px; 
+  color: #555;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #debe3b; /* K */
+  color: #777;
 }

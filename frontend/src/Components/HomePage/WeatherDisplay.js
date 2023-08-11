@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./CSS/Weather.css";
 
 const WeatherDisplay = () => {
   const [weatherData, setWeatherData] = useState({
@@ -12,7 +13,7 @@ const WeatherDisplay = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          const apiKey = '2e59fc1f006b4da5b8b133028230808';
+          const apiKey = '';
 
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;

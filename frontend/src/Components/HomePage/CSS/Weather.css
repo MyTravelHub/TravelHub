@@ -1,0 +1,7 @@
+/* Weather display styles */
+.weather-display {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f0f0f0;
+    color: #333;
+  }

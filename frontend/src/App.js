@@ -1,17 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './Pages/LandingPage';
-import AirportInfo from './Pages/AirportInfo';
+import AirportDelays from './Pages/AirportDelays';
 
 function App() {
   return (
     <Router>
       <div className="App">
-      <Routes>
-          <Route path="/AirportInfo" element={<AirportInfo />} />
-        </Routes>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/AirportDelays" element={<AirportDelays />} />
         </Routes>
       </div>
     </Router>

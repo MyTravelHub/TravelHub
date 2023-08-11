@@ -1,17 +1,17 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-import AirportDelays from "../Components/AirportInfo/Delays";
+import Delays from "../Components/AirportInfo/Delays";
 import "../CSS/AirportInfo.css";
 
-const AirlineInfo = () => {
+const AirportDelays = () => {
     return (
         <>
             <Navbar />
             <div>
-                <AirportDelays />
+                <Delays />
             </div>
         </>
     );
 }
 
-export default AirlineInfo;
+export default AirportDelays;
