@@ -1,0 +1,17 @@
+/* CSS for NearbyAirportSelector */
+.nearby-airports {
+  margin-top: 20px;
+}
+
+.nearby-airports h2 {
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+}
+
+.nearby-airports select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

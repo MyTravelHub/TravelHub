@@ -12,7 +12,7 @@ const WeatherDisplay = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          const apiKey = '';
+          const apiKey = '2e59fc1f006b4da5b8b133028230808';
 
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;

@@ -1,0 +1,14 @@
+/* CSS for DelaysFilter */
+.airline-filter {
+  margin-top: 20px;
+}
+
+.airline-filter label {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.airline-filter select {
+  padding: 6px;
+  font-size: 1rem;
+}

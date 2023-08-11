@@ -1,17 +1,23 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap");
 
 /* LandingPage.css */
 
 /* Reset default margin and padding */
-body, h1, h2, h3, p, ul, li {
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
   margin: 0;
   padding: 0;
 }
 
 /* Set default font family and background color */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #f0f0f0;
 }
 
@@ -93,7 +99,7 @@ button:hover {
 h2 {
   color: #333;
   margin-bottom: 10px;
-  font-family: 'Creepster', cursive;
+  font-family: "Creepster", cursive;
 }
 
 /* Text styles */
@@ -107,26 +113,3 @@ a {
   color: #ffcf0b;
 }
 
-/* Example CSS (LandingPage.css) */
-.sliding-box-container {
-  width: 90%;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.sliding-box-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.sliding-box {
-  min-width: 100%;
-  flex-shrink: 0;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.sliding-box-text {
-  padding: 20px;
-}
