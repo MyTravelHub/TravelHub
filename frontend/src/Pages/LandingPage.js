@@ -6,9 +6,9 @@ import "../CSS/LandingPage.css";
 
 // Component Imports
 import Navbar from "../Components/Navbar";
-import SearcBar from "../Components/HomePage/SearchBar";
 import WeatherDisplay from "../Components/HomePage/WeatherDisplay";
 import SlidingBoxs from "../Components/HomePage/SlidingBoxes";
+import MainHomeContainer from "../Components/HomePage/MainContainer";
 
 // Page Component
 const LandingPage = () => {
@@ -30,9 +30,9 @@ const LandingPage = () => {
   return (
     <div>
       <Navbar />
-      <SearcBar />
+      <MainHomeContainer />
       <WeatherDisplay />
-      <SlidingBoxs cards={cards} slideInterval={5000} /> {/* Include SlidingBoxs here */}
+      <SlidingBoxs cards={cards} slideInterval={9000} />
     </div>
   );
 };
