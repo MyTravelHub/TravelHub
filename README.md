@@ -3,7 +3,7 @@
 
 &#xa0;
 
-  <h1><a href="https://travelhub.netlify.app">Demo</a></h1>
+  <h1><a href="poketravelhub.netlify.app">Demo</a></h1>
 </div>
 
 <h1 align="center">TravelHub</h1>
