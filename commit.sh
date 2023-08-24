@@ -13,15 +13,6 @@ npm run build
 # Go back to the root directory
 cd ..
 
-# Navigate to the backend directory
-cd backend
-
-# Run build for the Express app
-# npm run build
-
-# Go back to the root directory
-cd ..
-
 # Check for changes
 if git diff-index --quiet HEAD --; then
     echo "No changes to commit."

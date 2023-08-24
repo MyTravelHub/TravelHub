@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../CSS/Navbar.css";
-import logoImage from "../Images/logo.png";
 
 const Navbar = () => {
   return (
     <nav>
       <div className="logo">
         <a href="/">
-          <img src={logoImage} alt="TravelHub" />
+          <span className="logo-text">POKE</span>
         </a>
       </div>
       <ul className="nav-links">

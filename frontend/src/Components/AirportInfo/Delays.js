@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DelaysFilter from './DelaysFilter';
 import './CSS/Delays.css';
 
-const apiKey = '';
+const apiKey = process.env.REACT_APP_AIRLABS_API_KEY;
 const airlinesApiUrl = 'https://airlabs.co/api/v9/airlines?api_key=' + apiKey;
 
 const Delays = () => {
