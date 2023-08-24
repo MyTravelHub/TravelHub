@@ -1,14 +1,19 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="TravelHub" />
+  <img src="./frontend/src/Images/logo.png" alt="TravelHub" />
 
-  &#xa0;
+&#xa0;
 
-  <!-- <a href="https://travelhub.netlify.app">Demo</a> -->
+  <h1><a href="https://travelhub.netlify.app">Demo</a></h1>
 </div>
 
 <h1 align="center">TravelHub</h1>
 
 <p align="center">
+
+<a href="https://app.netlify.com/sites/poketravelhub/deploys">
+  <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/16d90285-cd34-49c8-a7d3-e8ee3dacfe11/deploy-status" />
+</a>
+
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/MyTravelHub/travelhub?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/MyTravelHub/travelhub?color=56BEB8">
@@ -28,7 +33,7 @@
 
 <h4 align="center"> 
 	🚧  TravelHub 🚀 Under construction...  🚧
-</h4> 
+</h4>
 
 <hr>
 
@@ -44,17 +49,17 @@
 
 <br>
 
-## :dart: About ##
+## :dart: About
 
 An all in one Travel Hub resource center to find out weather, baggage limits, carry-on baggage rules, airport delays, and more for any given US airport.
 
-## :sparkles: Features ##
+## :sparkles: Features
 
 :heavy_check_mark: Feature 1: Check the weather and forcast of your current location\
 :heavy_check_mark: Feature 2: Check out flight delays for any given airport by search\
 :heavy_check_mark: Feature 3: Search for bagage or other useful infomation from airlines;
 
-## :rocket: Technologies ##
+## :rocket: Technologies
 
 The following tools were used in this project:
 
@@ -64,11 +69,11 @@ The following tools were used in this project:
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-## :white_check_mark: Requirements ##
+## :white_check_mark: Requirements
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-## :checkered_flag: Starting ##
+## :checkered_flag: Starting
 
 ```bash
 # Clone this project
@@ -85,8 +90,6 @@ $ npm start
 
 # The server will initialize in the <http://localhost:3000>
 ```
-
-
 
 Made with :heart: by <a href="https://github.com/Ewynman" target="_blank">Edward </a>
 
