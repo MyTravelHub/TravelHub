@@ -22,7 +22,7 @@ try:
     client.admin.command('ping')
     print("Connected to MongoDB!")  # Confirmation message
 except ConnectionFailure as e:
-    print("Failed to connect to MongoDB:", e)
+    print("Failed to connect to MongoDB because:", e)
 
 # Example route: Ping endpoint
 @app.route('/ping', methods=['GET'])
