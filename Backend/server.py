@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo.mongo_client import MongoClient
-from pymongo.errors import ConnectionFailure  # Import ConnectionFailure
+from pymongo.errors import ConnectionFailure
 from dotenv import load_dotenv
 import os
+from search import handle_search  # Import the function
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,10 +35,9 @@ def search():
     data = request.json
     search_query = data.get('query')
 
-    # In a real scenario, process the search query and return results
-    # For now, print the search query and return a mock response
-    print("Received search query:", search_query)
-    return jsonify({'message': 'Query received'})
+    # Call the handle_search function from search_handler
+    response = handle_search(search_query)
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

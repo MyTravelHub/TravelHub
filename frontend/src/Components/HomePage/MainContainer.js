@@ -3,6 +3,7 @@ import './CSS/MainHomeContainer.css';
 import imagea from "./Images/1.jpg";
 import imageb from "./Images/2.jpg";
 import imagec from "./Images/3.jpg";
+import SearchBar from './SearchBar';
 
 const images = [imagea, imageb, imagec]; 
 
@@ -21,7 +22,14 @@ const MainHomeContainer = () => {
     <div className="main-home-container">
       <div className="carousel-container">
         <div className="carousel">
-          <img src={images[activeIndex]} alt={`Slide ${activeIndex}`} />
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`carousel-slide ${index === activeIndex ? 'active' : ''}`}
+            >
+              <img src={image} alt={`Slide ${index}`} />
+            </div>
+          ))}
           <button className="carousel-button prev" onClick={handlePrev}>
             Previous
           </button>
@@ -30,8 +38,13 @@ const MainHomeContainer = () => {
           </button>
         </div>
       </div>
+      <div className="search-container">
+        <p className="search-text">Search for something</p>
+        <SearchBar />
+      </div>
     </div>
   );
 };
+
 
 export default MainHomeContainer;
