@@ -17,7 +17,7 @@ client = MongoClient(uri)
 app = Flask(__name__)
 CORS(app)
 
-# Check MongoDB connection
+# Check MongoDB connection 
 try:
     client.admin.command('ping')
     print("Connected to MongoDB!")  # Confirmation message
