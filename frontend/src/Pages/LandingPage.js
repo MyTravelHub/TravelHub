@@ -8,6 +8,7 @@ import "../CSS/LandingPage.css";
 import Navbar from "../Components/Navbar";
 import WeatherDisplay from "../Components/HomePage/WeatherDisplay";
 import MainHomeContainer from "../Components/HomePage/MainContainer";
+import Footer from "../Components/Footer";
 
 // Page Component
 const LandingPage = () => {
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <Navbar />
       <MainHomeContainer />
       <WeatherDisplay />
+      <Footer/>
     </div>
   );
 };

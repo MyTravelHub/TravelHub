@@ -100,7 +100,7 @@ const Delays = () => {
             ))}
           </tbody>
         </table>
-      
+     
     </div>
   );
 };
