@@ -23,8 +23,8 @@ const WeatherDisplay = () => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
 
-          const currentApiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`;
-          const forecastApiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=3`;
+          const currentApiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}`;
+          const forecastApiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=3`;
 
           try {
             const currentResponse = await axios.get(currentApiUrl);
