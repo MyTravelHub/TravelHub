@@ -1,9 +1,8 @@
-// WeatherDisplay.js
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CSS/Weather.css";
 import { WiDaySunny, WiCloudy, WiRain, WiSnow } from "react-icons/wi";
+import FlightSearch from "./FlightSearch"; // Import the FlightSearch component
 
 const WeatherDisplay = () => {
   const [weatherData, setWeatherData] = useState({
@@ -15,105 +14,121 @@ const WeatherDisplay = () => {
 
   const [forecastData, setForecastData] = useState([]);
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-
-          const currentApiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`;
-          const forecastApiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=3`;
-
-          try {
-            const currentResponse = await axios.get(currentApiUrl);
-            const forecastResponse = await axios.get(forecastApiUrl);
-
-            const { current, location } = currentResponse.data;
-            setWeatherData({
-              temperature: current.temp_f,
-              description: current.condition.text,
-              location: location.name,
-              icon: current.condition.icon,
-            });
-
-            const forecastDays = forecastResponse.data.forecast.forecastday;
-            setForecastData(forecastDays);
-          } catch (error) {
-            console.error("Error fetching weather data:", error);
-          }
-        },
-        (error) => {
-          console.error("Error getting user location:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not available in this browser.");
-    }
-  }, []);
+  // Function to convert a date string to a day of the week
+  const getDayName = (dateString) => {
+    const options = { weekday: "long" };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
 
   const renderWeatherIcon = (iconName) => {
     switch (iconName) {
-      case "1000":
+      case "01d":
         return <WiDaySunny />;
-      case "1003":
+      case "02d":
         return <WiCloudy />;
-      case "1006":
-      case "1009":
+      case "10d":
         return <WiRain />;
-      case "1063":
-      case "1066":
+      case "13d":
         return <WiSnow />;
       default:
         return <WiDaySunny />;
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            const currentApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+            const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+
+            try {
+              const currentResponse = await axios.get(currentApiUrl);
+              const forecastResponse = await axios.get(forecastApiUrl);
+
+              const { main, weather, name } = currentResponse.data;
+              setWeatherData({
+                temperature: main.temp,
+                description: weather[0].description,
+                location: name,
+                icon: weather[0].icon,
+              });
+
+              // Parse the forecast data from the response
+              const forecastDays = parseForecastData(forecastResponse.data.list);
+              setForecastData(forecastDays);
+            } catch (error) {
+              console.error("Error fetching weather data:", error);
+            }
+          },
+          (error) => {
+            console.error("Error getting user location:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not available in this browser.");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const parseForecastData = (forecastList) => {
+    const forecastDays = {};
+    forecastList.forEach((item) => {
+      const date = item.dt_txt.split(" ")[0];
+      if (!forecastDays[date]) {
+        forecastDays[date] = {
+          temperatures: [],
+          descriptions: [],
+          icons: [],
+        };
+      }
+      forecastDays[date].temperatures.push(item.main.temp);
+      forecastDays[date].descriptions.push(item.weather[0].description);
+      forecastDays[date].icons.push(item.weather[0].icon);
+    });
+
+    // Convert the grouped forecast data into an array with day names
+    const forecastArray = Object.keys(forecastDays).map((date) => ({
+      dayName: getDayName(date),
+      temperatures: forecastDays[date].temperatures,
+      descriptions: forecastDays[date].descriptions,
+      icons: forecastDays[date].icons,
+    }));
+
+    // Limit the forecast to the next 3 days
+    return forecastArray.slice(0, 3);
+  };
+
   return (
     <div className="weather-display">
-      <h3>{weatherData.location}</h3>
-      <div className="current-weather">
-        <div className="current-data">
-          <div className="weather-icon">
-            {renderWeatherIcon(weatherData.icon)}
-          </div>
-          <div>
-            <h4>Current Temperature</h4>
-            <p>Temperature: {weatherData.temperature}°F</p>
-            <p>{weatherData.description}</p>
-          </div>
-        </div>
+      <div className="forecast-and-flight">
         <div className="forecast-data">
-          <h4>12-Hour Forecast</h4>
-          {/* Add your 12-hour forecast content here */}
-        </div>
-      </div>
-      <div className="forecast">
-        <h4>3-Day Forecast</h4>
-        <div className="forecast">
-          {forecastData.map((day, index) => (
-            <div key={index} className="forecast-day">
-              <div className="weather-icon">
-                {renderWeatherIcon(day.day.condition.icon)}
+          <h4>3-Day Forecast</h4>
+          <div className="forecast">
+            {forecastData.map((day, index) => (
+              <div key={index} className="forecast-day">
+                <h5>{day.dayName}</h5>
+                <div className="weather-icon">{renderWeatherIcon(day.icons[0])}</div>
+                <p>High: {Math.max(...day.temperatures)}°F</p>
+                <p>Low: {Math.min(...day.temperatures)}°F</p>
+                <p>{day.descriptions[0]}</p>
               </div>
-              <h5>{formatDateToDayOfWeek(day.date)}</h5>
-              <p>Max Temp: {day.day.maxtemp_f}°F</p>
-              <p>Min Temp: {day.day.mintemp_f}°F</p>
-              <p>{day.day.condition.text}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+        <div className="flight-search">
+          <FlightSearch />
         </div>
       </div>
     </div>
   );
-};
-
-const formatDateToDayOfWeek = (dateString) => {
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const date = new Date(dateString);
-  const dayOfWeek = daysOfWeek[date.getDay()];
-  return dayOfWeek;
 };
 
 export default WeatherDisplay;
