@@ -13,7 +13,6 @@ const WeatherDisplay = () => {
   });
 
   const [forecastData, setForecastData] = useState([]);
-
   // Function to convert a date string to a day of the week
   const getDayName = (dateString) => {
     const options = { weekday: "long" };
