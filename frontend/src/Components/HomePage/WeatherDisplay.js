@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CSS/Weather.css";
 import { WiDaySunny, WiCloudy, WiRain, WiSnow } from "react-icons/wi";
-import FlightSearch from "./FlightSearch"; // Import the FlightSearch component
+import FlightSearch from "./FlightSearch";
 
 const WeatherDisplay = () => {
   const [weatherData, setWeatherData] = useState({
@@ -13,7 +13,7 @@ const WeatherDisplay = () => {
   });
 
   const [forecastData, setForecastData] = useState([]);
-  // Function to convert a date string to a day of the week
+
   const getDayName = (dateString) => {
     const options = { weekday: "long" };
     return new Date(dateString).toLocaleDateString("en-US", options);
@@ -32,6 +32,10 @@ const WeatherDisplay = () => {
       default:
         return <WiDaySunny />;
     }
+  };
+
+  const formatTemperature = (temperature) => {
+    return Math.floor(temperature);
   };
 
   useEffect(() => {
@@ -58,7 +62,6 @@ const WeatherDisplay = () => {
                 icon: weather[0].icon,
               });
 
-              // Parse the forecast data from the response
               const forecastDays = parseForecastData(forecastResponse.data.list);
               setForecastData(forecastDays);
             } catch (error) {
@@ -93,7 +96,6 @@ const WeatherDisplay = () => {
       forecastDays[date].icons.push(item.weather[0].icon);
     });
 
-    // Convert the grouped forecast data into an array with day names
     const forecastArray = Object.keys(forecastDays).map((date) => ({
       dayName: getDayName(date),
       temperatures: forecastDays[date].temperatures,
@@ -101,7 +103,6 @@ const WeatherDisplay = () => {
       icons: forecastDays[date].icons,
     }));
 
-    // Limit the forecast to the next 3 days
     return forecastArray.slice(0, 3);
   };
 
@@ -115,8 +116,8 @@ const WeatherDisplay = () => {
               <div key={index} className="forecast-day">
                 <h5>{day.dayName}</h5>
                 <div className="weather-icon">{renderWeatherIcon(day.icons[0])}</div>
-                <p>High: {Math.max(...day.temperatures)}°F</p>
-                <p>Low: {Math.min(...day.temperatures)}°F</p>
+                <p>High: {formatTemperature(Math.max(...day.temperatures))}°F</p>
+                <p>Low: {formatTemperature(Math.min(...day.temperatures))}°F</p>
                 <p>{day.descriptions[0]}</p>
               </div>
             ))}
