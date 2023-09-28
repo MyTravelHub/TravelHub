@@ -1,3 +1,4 @@
+# server.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo.mongo_client import MongoClient
@@ -24,6 +25,9 @@ try:
 except ConnectionFailure as e:
     print("Failed to connect to MongoDB because:", e)
 
+# Create a reference to the database
+db = client.mydatabase  # Replace 'mydatabase' with your actual database name
+
 # Example route: Ping endpoint
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -35,8 +39,8 @@ def search():
     data = request.json
     search_query = data.get('query')
 
-    # Call the handle_search function from search_handler
-    response = handle_search(search_query)
+    # Pass the database reference to the handle_search function
+    response = handle_search(search_query, db)
     return response
 
 if __name__ == '__main__':

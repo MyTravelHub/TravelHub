@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/AirportDelays" element={<AirportDelays />} />
+          <Route path="/AirportDelays/:searchQuery" element={<AirportDelays />} />
         </Routes>
       </div>
     </Router>
