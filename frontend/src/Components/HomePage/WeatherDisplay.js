@@ -82,29 +82,39 @@ const WeatherDisplay = () => {
 
   const parseForecastData = (forecastList) => {
     const forecastDays = {};
+    const today = new Date();
+    let dayCounter = 0;
+  
     forecastList.forEach((item) => {
-      const date = item.dt_txt.split(" ")[0];
-      if (!forecastDays[date]) {
-        forecastDays[date] = {
-          temperatures: [],
-          descriptions: [],
-          icons: [],
-        };
+      const date = new Date(item.dt_txt.split(" ")[0]);
+      
+      // Filter forecast data for the next three days
+      if (date >= today && dayCounter < 3) {
+        const dateString = date.toDateString();
+        if (!forecastDays[dateString]) {
+          forecastDays[dateString] = {
+            temperatures: [],
+            descriptions: [],
+            icons: [],
+          };
+          dayCounter++;
+        }
+        forecastDays[dateString].temperatures.push(item.main.temp);
+        forecastDays[dateString].descriptions.push(item.weather[0].description);
+        forecastDays[dateString].icons.push(item.weather[0].icon);
       }
-      forecastDays[date].temperatures.push(item.main.temp);
-      forecastDays[date].descriptions.push(item.weather[0].description);
-      forecastDays[date].icons.push(item.weather[0].icon);
     });
-
-    const forecastArray = Object.keys(forecastDays).map((date) => ({
-      dayName: getDayName(date),
-      temperatures: forecastDays[date].temperatures,
-      descriptions: forecastDays[date].descriptions,
-      icons: forecastDays[date].icons,
+  
+    const forecastArray = Object.keys(forecastDays).map((dateString) => ({
+      dayName: getDayName(dateString),
+      temperatures: forecastDays[dateString].temperatures,
+      descriptions: forecastDays[dateString].descriptions,
+      icons: forecastDays[dateString].icons,
     }));
-
-    return forecastArray.slice(0, 3);
+  
+    return forecastArray;
   };
+  
 
   return (
     <div className="weather-display">

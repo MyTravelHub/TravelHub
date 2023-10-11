@@ -39,9 +39,13 @@ def search():
     data = request.json
     search_query = data.get('query')
 
+    print('Data:', data)  # Debugging statement
+    print('Search Query:', search_query)  # Debugging statement
+
     # Pass the database reference to the handle_search function
     response = handle_search(search_query, db)
     return response
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
