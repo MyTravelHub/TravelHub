@@ -39,7 +39,7 @@ const MainHomeContainer = () => {
         </div>
       </div>
       <div className="search-container">
-        <p className="search-text">Search for something</p>
+        <p className="search-text"></p>
         <SearchBar />
       </div>
     </div>
