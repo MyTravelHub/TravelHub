@@ -61,9 +61,6 @@ const Delays = () => {
           console.error('Error fetching delay data:', error);
         }
       } else {
-        // Handle the case when no currentSearchQuery is provided
-        // For example, you can display a message or perform any other desired action.
-        // Here, I'm displaying a message in the header.
         setDelayData([]);
         setSelectedAirportName('Please Enter an Airport Code');
       }

@@ -5,41 +5,35 @@ from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 from dotenv import load_dotenv
 import os
-from search import handle_search  # Import the function
+from search import handle_search
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Connect to MongoDB using the URI from environment variables
 uri = os.getenv('MONGO_URI')
 client = MongoClient(uri)
 
-# Create a Flask app
 app = Flask(__name__)
 CORS(app)
 
-# Check MongoDB connection 
 try:
     client.admin.command('ping')
-    print("Connected to MongoDB!")  # Confirmation message
+    print("Connected to MongoDB!")
 except ConnectionFailure as e:
     print("Failed to connect to MongoDB because:", e)
 
-# Create a reference to the database
-db = client.mydatabase  # Replace 'mydatabase' with your actual database name
+db = client.AirlineInfo
 
-# Example route: Ping endpoint
 @app.route('/ping', methods=['GET'])
 def ping():
     return jsonify({'message': 'Pong!'})
 
-# Route for search endpoint
 @app.route('/search', methods=['POST'])
 def search():
     data = request.json
     search_query = data.get('query')
 
-    # Pass the database reference to the handle_search function
+    print('Query received:', search_query)  # Print the query received
+
     response = handle_search(search_query, db)
     return response
 

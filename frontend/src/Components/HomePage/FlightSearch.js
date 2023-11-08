@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import FullWidthTextField from './FullWidthTextField'; // Import the FullWidthTextField component
+import TextField from '@mui/material/TextField';
 
-// import './CSS/FlightSearch.css';
 const FlightSearch = () => {
   // Define state variables to store flight data and user input
   const [flightData, setFlightData] = useState(null);
@@ -55,18 +56,15 @@ const FlightSearch = () => {
 
   return (
     <div className="flight-search">
-      <h1>Flight Search</h1>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Enter Airline IATA Code and Flight Number (e.g., AA 1010)"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <button onClick={handleFlightSearch} disabled={loading}>
-          {loading ? 'Searching...' : 'Search'}
-        </button>
-      </div>
+      <h2>Flight Search</h2>
+      <p></p>
+      {/* Use the FullWidthTextField component here */}
+      <FullWidthTextField
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        onSearch={handleFlightSearch}
+        loading={loading}
+      />
 
       {error && <p className="error">{error}</p>}
 
@@ -74,9 +72,9 @@ const FlightSearch = () => {
         <div className="flight-details">
           {/* Display flight data here */}
           <h2>Flight Information</h2>
-          <p>Flight ICAO: {flightData.response.airline_icao|| 'N/A'}</p>
-          <p>Departure Gate: {flightData.response.dep_gate || 'N/A'}</p>
+          <p>Flight ICAO: {flightData.response.airline_icao || 'N/A'}</p>
           <p>Departure City: {flightData.response.dep_city || 'N/A'}</p>
+          <p>Departure Gate: {flightData.response.dep_gate || 'N/A'}</p>
           <p>Arrival City: {flightData.response.arr_city || 'N/A'}</p>
           <p>Arrival Gate: {flightData.response.arr_gate || 'N/A'}</p>
         </div>

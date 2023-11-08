@@ -2,48 +2,76 @@
 from flask import jsonify
 from pymongo import MongoClient
 
-# Define the search dictionary
-search_dictionary = {
-    "baggage_info": ["carry-on", "checked", "bag", "policy"],
-    # Add more categories and keywords as needed
+# Define search parameters
+search_params = {
+    "carry-on": "carryOnBagSize",
+    "weight": "checkedBagWeight",
+    "size": "checkedBagSize"
+}
+
+# Define airline mappings
+airlines = {
+    "united": "United Airlines",
+    "delta": "Delta Airlines",
+    "american": "American Airlines",
+    "spirit": "Spirit Airlines",
+    "southwest": "Southwest Airlines",
+    "jetblue": "JetBlue Airways"
 }
 
 def handle_search(query, db):
-    # Split the search query into words
     query_words = query.lower().split()
 
-    # Initialize a response message
     response_message = "No relevant information found."
 
-    # Access the baggage_info collection using the passed database reference
-    baggage_info_collection = db.baggage_info  # Replace 'baggage_info' with your collection name
+    baggage_info_collection = db.BaggageInfo
 
-    # Iterate through the categories in the search dictionary
-    for category, keywords in search_dictionary.items():
-        # Check if any keyword is present in the query
-        if any(keyword in query_words for keyword in keywords):
-            # If a match is found, perform a search in the specified cluster
-            if category == "baggage_info":
-                # Example: Search for airline baggage information
-                # Replace this with your actual database query logic
-                result = search_baggage_info(query_words, baggage_info_collection)
-                if result:
-                    response_message = result
-                break  # Exit the loop if a match is found
+    # Extract airline name from the query
+    airline_name = None
+    for word in query_words:
+        if word in airlines:
+            airline_name = airlines[word]
+            break
 
-    # Print the search query and response to the console
+    search_param = None
+    for word in query_words:
+        if word in search_params:
+            search_param = search_params[word]
+            break
+
+    if airline_name and search_param:
+        result = search_baggage_info(airline_name, search_param, baggage_info_collection)
+        if result:
+            response_message = result
+
     print("Received search query:", query)
     print("Response:", response_message)
 
     return jsonify({'message': response_message})
 
-def search_baggage_info(query_words, baggage_info_collection):
-    result = baggage_info_collection.find({"airlineName": {"$in": query_words}})
-    
-    # Process the query result and generate a response
-    # You can customize this part to format and return the relevant information
-    response = []
-    for doc in result:
-        response.append(f"Airline: {doc['airlineName']}, Policy: {doc['policy']}")
-    
-    return "\n".join(response) if response else "No baggage information found."
+def search_baggage_info(airline_name, search_param, baggage_info_collection):
+    # Create a mapping for user-friendly labels
+    field_labels = {
+        'checkedBagWeight': 'Checked Bag Weight',
+        'carryOnBagSize': 'Carry-On Bag Size',
+        'checkedBagSize': 'Checked Bag Size',
+        'airlineName': 'Airline Name',
+    }
+
+    try:
+        query = {
+            "airlineName": airline_name,
+            search_param: {"$exists": True, "$ne": None}
+        }
+        print("Query:", query)
+        result = baggage_info_collection.find_one(query)
+
+        if result and search_param in result:
+            baggage_weight = result[search_param]
+            label = field_labels.get(search_param, search_param)  # Use the label from the mapping
+            return f"The {label} for {airline_name} is {baggage_weight}."
+
+        return "No baggage information found."
+    except Exception as e:
+        print(f"Error occurred in search_baggage_info: {str(e)}")
+        return "Error occurred while searching for baggage information."

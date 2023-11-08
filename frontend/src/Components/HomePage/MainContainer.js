@@ -3,7 +3,7 @@ import './CSS/MainHomeContainer.css';
 import imagea from "./Images/1.jpg";
 import imageb from "./Images/2.jpg";
 import imagec from "./Images/3.jpg";
-import SearchBar from './SearchBar';
+import SearchBar from './Components/SearchBar';
 
 const images = [imagea, imageb, imagec]; 
 
@@ -39,7 +39,7 @@ const MainHomeContainer = () => {
         </div>
       </div>
       <div className="search-container">
-        <p className="search-text">Search for something</p>
+        <p className="search-text"></p>
         <SearchBar />
       </div>
     </div>
