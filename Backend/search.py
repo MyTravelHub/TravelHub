@@ -4,14 +4,19 @@ from pymongo import MongoClient
 
 # Define search parameters
 search_params = {
-    "checked": "checkedBagWeight",
-    "carry-on": "carryOn",
+    "carry-on": "carryOnBagSize",
     "weight": "checkedBagWeight",
+    "size": "checkedBagSize"
 }
 
 # Define airline mappings
 airlines = {
     "united": "United Airlines",
+    "delta": "Delta Airlines",
+    "american": "American Airlines",
+    "spirit": "Spirit Airlines",
+    "southwest": "Southwest Airlines",
+    "jetblue": "JetBlue Airways"
 }
 
 def handle_search(query, db):
@@ -19,7 +24,7 @@ def handle_search(query, db):
 
     response_message = "No relevant information found."
 
-    baggage_info_collection = db.AirlineInfo.BaggageInfo
+    baggage_info_collection = db.BaggageInfo
 
     # Extract airline name from the query
     airline_name = None
@@ -45,6 +50,14 @@ def handle_search(query, db):
     return jsonify({'message': response_message})
 
 def search_baggage_info(airline_name, search_param, baggage_info_collection):
+    # Create a mapping for user-friendly labels
+    field_labels = {
+        'checkedBagWeight': 'Checked Bag Weight',
+        'carryOnBagSize': 'Carry-On Bag Size',
+        'checkedBagSize': 'Checked Bag Size',
+        'airlineName': 'Airline Name',
+    }
+
     try:
         query = {
             "airlineName": airline_name,
@@ -54,7 +67,9 @@ def search_baggage_info(airline_name, search_param, baggage_info_collection):
         result = baggage_info_collection.find_one(query)
 
         if result and search_param in result:
-            return result[search_param]
+            baggage_weight = result[search_param]
+            label = field_labels.get(search_param, search_param)  # Use the label from the mapping
+            return f"The {label} for {airline_name} is {baggage_weight}."
 
         return "No baggage information found."
     except Exception as e:

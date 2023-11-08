@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './CSS/SearchBar.css'
+import './CSS/SearchBar.css';
+import SearchResultPopup from './SearchResultPopup'; // Import the popup component
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchStatus, setSearchStatus] = useState('');
+  const [searchResult, setSearchResult] = useState(null); // State to store search result
+  const [popupVisible, setPopupVisible] = useState(false); // State to control popup visibility
   const [airportSuggestions, setAirportSuggestions] = useState([]);
   const navigate = useNavigate();
 
@@ -70,7 +73,10 @@ const SearchBar = () => {
         const response = await axios.post('http://localhost:5000/search', {
           query: searchQuery,
         });
-        console.log('Backend Response:', response.data);
+        if (response.data.message !== 'No relevant information found.') {
+          setSearchResult(response.data.message);
+          setPopupVisible(true); // Show the popup
+        }
       } catch (error) {
         alert('Error sending query to the backend');
       }
@@ -103,12 +109,21 @@ const SearchBar = () => {
             </div>
           )}
         </div>
-        <button type="submit" className="search-button">Search</button>
+        <button type="submit" className="search-button">
+          Search
+        </button>
       </form>
       <p>{searchStatus}</p>
+
+      {/* Render the popup component when it's visible */}
+      {popupVisible && (
+        <SearchResultPopup
+          searchResult={searchResult}
+          onClose={() => setPopupVisible(false)} // Close the popup
+        />
+      )}
     </div>
   );
 };
 
 export default SearchBar;
-
